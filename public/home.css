@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    font-family: "Segoe UI", sans-serif;
+    min-height: 100vh;
+    /* background: radial-gradient(circle at 20% 10%, #3730a3 0%, #141a26 55%, #141a26 100%); */
+    background: radial-gradient(circle at 20% 10%, #3730a3 0%, #1f293d 55%, #313e57 100%);
+    padding: 0 0 60px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 64px auto 0;
+    padding: 0 20px;
+}
+
+.hero-text {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.hero-text h1 {
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, #c7d2fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+}
+
+.welcome {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 14px;
+}
+
+.welcome strong {
+    color: #fff;
+}
+
+.hero-sub {
+    color: #b7c5da;
+    font-size: 18px;
+    max-width: 590px;
+    margin: 30px auto 40px;
+    line-height: 1.5;
+}
+
+/* ---------- shorten form ---------- */
+
+.shorten-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 16px;
+}
+
+.shorten-form input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    transition: box-shadow 0.2s ease;
+}
+
+.shorten-form input:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+.shorten-form button {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.shorten-form button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.45);
+}
+
+/* ---------- result card (just generated) ---------- */
+
+.result-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.28), rgba(20, 184, 166, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+}
+
+.result-label {
+    display: block;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.result-url-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.result-url {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.result-url:hover {
+    text-decoration: underline;
+}
+
+.result-qr {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.result-qr img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 6px;
+}
+
+.qr-download {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.qr-download:hover {
+    text-decoration: underline;
+}
+
+/* ---------- copy buttons ---------- */
+
+.copy-btn {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.copy-btn.copied {
+    background: #22c55e;
+    border-color: #22c55e;
+}
+
+.copy-btn.small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* ---------- section title ---------- */
+
+.section-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0 18px;
+}
+
+/* ---------- url cards grid ---------- */
+
+.url-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 46px;
+}
+
+.url-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 18px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.url-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+}
+
+.url-card-top {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.qr-thumb {
+    width: 78px;
+    height: 78px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.url-card-info {
+    min-width: 0;
+}
+
+.short-link {
+    display: block;
+    color: #c7d2fe;
+    font-weight: 700;
+    font-size: 14.5px;
+    text-decoration: none;
+    word-break: break-all;
+    margin-bottom: 4px;
+}
+
+.short-link:hover {
+    text-decoration: underline;
+}
+
+.dest-link {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.url-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.click-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+.empty {
+    text-align: center;
+    margin-bottom: 46px;
+    padding: 30px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+}
+
+/* ---------- FAQ ---------- */
+
+.faq-section {
+    margin-top: 20px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::before {
+    content: "+";
+    display: inline-block;
+    width: 18px;
+    color: #c7d2fe;
+    font-weight: 800;
+}
+
+.faq-item[open] summary::before {
+    content: "–";
+}
+
+.faq-item p {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16.5px;
+    line-height: 1.65;
+    padding-left: 18px;
+}
+
+.faq-item ol,
+.faq-item ul {
+    margin-top: 10px;
+    padding-left: 36px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16.5px;
+    line-height: 1.85;
+}
+
+.faq-item p a {
+    color: #c7d2fe;
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 0 14px;
+        margin-top: 38px;
+    }
+
+    .hero-text h1 {
+        font-size: 26px;
+    }
+
+    .url-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .result-qr {
+        align-self: center;
+    }
+
+    .result-url {
+        font-size: 16px;
+    }
+
+    .shorten-form {
+        flex-direction: column;
+    }
+
+    .shorten-form button {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+        margin-top: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 22px;
+    }
+
+    .welcome {
+        font-size: 13px;
+    }
+
+    .shorten-form {
+        padding: 8px;
+        border-radius: 12px;
+    }
+
+    .shorten-form input {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .result-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .result-url-row {
+        gap: 8px;
+    }
+
+    .url-card-top {
+        gap: 10px;
+    }
+
+    .qr-thumb {
+        width: 60px;
+        height: 60px;
+    }
+
+    .short-link {
+        font-size: 13px;
+    }
+
+    .dest-link {
+        font-size: 11.5px;
+    }
+
+    .faq-item {
+        padding: 12px 14px;
+    }
+
+    .faq-item summary {
+        font-size: 14px;
+    }
+
+    .faq-item p {
+        font-size: 15px;
+        padding-left: 14px;
+    }
+}

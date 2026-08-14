@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/home.css">
+    <title>URL Shortener</title>
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+    <div class="container">
+
+        <div class="hero-text">
+            <h1>🔗 Snippy URL Shortener</h1>
+            <% if (locals.userName) { %>
+                <p class="welcome">Welcome, <strong><%= userName %></strong></p>
+            <% } %>
+                <p class="hero-sub">Shorten your links securely and share them with confidence — every link you create stays private to your account and is backed by reliable, encrypted redirects.</p>
+
+        </div>
+
+        <form method="POST" action="/url" class="shorten-form">
+            <input type="text" name="url" placeholder="Paste a long URL here… https://example.com" required>
+            <button type="submit">Shorten it ✨</button>
+        </form>
+
+        <% if (locals.id) {
+            const fullShortUrl = `${host}/url/${id}`;
+        %>
+            <div class="result-card">
+                <div class="result-info">
+                    <span class="result-label">Your short link is ready ✨</span>
+                    <div class="result-url-row">
+                        <a href="/url/<%= id %>" target="_blank" class="result-url"><%= fullShortUrl %></a>
+                        <button type="button" class="copy-btn" data-url="<%= fullShortUrl %>">Copy</button>
+                    </div>
+                </div>
+                <div class="result-qr">
+                    <img src="/url/qr/<%= id %>" alt="QR code for short link">
+                    <a href="/url/qr/<%= id %>" download="qr-<%= id %>.png" class="qr-download">Download QR</a>
+                </div>
+            </div>
+        <% } %>
+
+        <h2 class="section-title">Your Links</h2>
+
+        <% if (locals.urls && urls.length > 0) { %>
+
+            <div class="url-grid">
+                <% urls.forEach((url) => {
+                    const shortUrl = `${host}/url/${url.shortid}`;
+                %>
+                    <div class="url-card">
+                        <div class="url-card-top">
+                            <img class="qr-thumb" src="/url/qr/<%= url.shortid %>" alt="QR code">
+                            <div class="url-card-info">
+                                <a class="short-link" href="/url/<%= url.shortid %>" target="_blank"><%= shortUrl %></a>
+                                <p class="dest-link" title="<%= url.redirectUrl %>"><%= url.redirectUrl %></p>
+                            </div>
+                        </div>
+                        <div class="url-card-bottom">
+                            <span class="click-badge">👁 <%= url.viewClickedHistory.length %> clicks</span>
+                            <% if (url.createdBy && url.createdBy.name) { %>
+                                <span class="click-badge" title="<%= url.createdBy.email %>"><i class="fa-solid fa-user"></i></i>
+ <%= url.createdBy.name %></span>
+                            <% } %>
+                            <button type="button" class="copy-btn small" data-url="<%= shortUrl %>">Copy</button>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+        <% } else { %>
+
+            <div class="empty">
+                No URLs created yet. Paste a link above to get started <i class="fa-solid fa-hourglass-start"></i>
+            </div>
+
+        <% } %>
+
+        <div class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <details class="faq-item">
+                <summary>How does the URL shortener work?</summary>
+                <p>Paste any long URL into the box above and hit "Shorten it". We generate a short, unique link that redirects to your original URL whenever someone visits it.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>What is the QR code for?</summary>
+                <p>Every short link automatically gets a QR code. Scan it with any phone camera to open the link instantly — handy for posters, business cards, or presentations.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How to create a QR code easily? (6 quick steps)</summary>
+                <ol>
+                    <li>Paste your long URL into the box at the top of this page.</li>
+                    <li>Click "Shorten it ✨" to generate your short link.</li>
+                    <li>Your QR code appears instantly right next to the new link.</li>
+                    <li>Click "Download QR" to save it as a PNG image.</li>
+                    <li>Print it or drop it into any poster, flyer, or slide deck.</li>
+                    <li>Test it by scanning with your phone's camera before sharing it publicly.</li>
+                </ol>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I track how many people clicked my link?</summary>
+                <p>Yes! Every card shows a live click count, and each click is timestamped so you can see engagement over time.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Do my short links expire?</summary>
+                <p>No, your links stay active for as long as your account exists. There's no automatic expiry.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Is there a limit to how many links I can create?</summary>
+                <p>Free accounts can create a generous number of links per month. Check the <a href="/pricing">Pricing</a> page if you need unlimited links and advanced analytics.</p>
+            </details>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const url = btn.getAttribute('data-url');
+                try {
+                    await navigator.clipboard.writeText(url);
+                    const original = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = original;
+                        btn.classList.remove('copied');
+                    }, 1500);
+                } catch (err) {
+                    console.error('Copy failed', err);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

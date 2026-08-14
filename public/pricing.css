@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 20%, #3730a3 0%, #141a26 55%, #141a26 100%);
+    color: #fff;
+}
+
+.page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 90px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, #c7d2fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 14px;
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.plan-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 32px 26px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.plan-card.featured {
+    background: linear-gradient(160deg, rgba(99, 102, 241, 0.35), rgba(20, 184, 166, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    padding: 5px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.plan-card h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.price span {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.plan-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 20px;
+    min-height: 40px;
+}
+
+.plan-card ul {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 28px;
+}
+
+.plan-card ul li {
+    padding: 7px 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.plan-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.plan-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.plan-btn-primary {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+}
+
+.plan-btn-primary:hover {
+    filter: brightness(1.08);
+}
+
+@media (max-width: 860px) {
+    .plans {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-wrap {
+        padding: 40px 14px 60px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .plan-card {
+        padding: 26px 18px;
+    }
+
+    .price {
+        font-size: 32px;
+    }
+}

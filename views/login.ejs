@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/head') %>
+        <link rel="stylesheet" href="/login.css">
+        <title>Login</title>
+
+
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <div class="login-card">
+
+            <h1><i class="fa-solid fa-lock" style="color: rgb(13, 66, 132);"></i> Login</h1>
+
+            <% if (locals.error) { %>
+                <div class="error">
+                    <%= error %>
+                </div>
+                <% } %>
+
+                    <form action="/user/login" method="POST">
+
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" name="password" id="loginPassword" placeholder="Enter your password"
+                                required>
+                            <span class="toggle-eye" onclick="togglePassword('loginPassword', this)"><i
+                                    class="fa-solid fa-eye-slash"></i></span>
+                        </div>
+
+
+                        <button type="submit">
+                            Login
+                        </button>
+
+                    </form>
+
+                    <div class="divider">
+                        <span>or</span>
+                    </div>
+
+                    <a href="/auth/google" class="google-btn">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                        <span>Continue with Google</span>
+                    </a>
+
+                    <div class="signup-link">
+                        Don't have an account?
+                        <a href="/signup">Sign Up</a>
+                    </div>
+
+        </div>
+
+        <style>
+            .password-wrapper {
+                position: relative;
+                display: flex;
+                align-items: center;
+            }
+
+            .password-wrapper input {
+                width: 100%;
+                padding-right: 40px;
+            }
+
+            .toggle-eye {
+                position: absolute;
+                right: 12px;
+                cursor: pointer;
+                font-size: 18px;
+                user-select: none;
+            }
+        </style>
+
+        <script>
+            function togglePassword(fieldId, icon) {
+                const input = document.getElementById(fieldId);
+                const iconEl = icon.querySelector('i');
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    iconEl.classList.remove("fa-eye-slash");
+                    iconEl.classList.add("fa-eye");
+                } else {
+                    input.type = "password";
+                    iconEl.classList.remove("fa-eye");
+                    iconEl.classList.add("fa-eye-slash");
+                }
+            }
+        </script>
+
+</body>
+
+</html>
