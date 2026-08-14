@@ -30,7 +30,7 @@ async function handleUserLogin(req, res) {
 
     const domain = email.split('@')[1];
     if (!allowedDomains.includes(domain)) {
-        return res.render("signup", {
+        return res.render("login", {
             error: "Please use a valid email !",
         });
     }
